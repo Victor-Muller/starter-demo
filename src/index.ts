@@ -29,4 +29,27 @@ window.Webflow.push(() => {
     console.log('close');
     this.animation.reverse();
   });
+
+  // Slick carousel
+
+  $('.services-carousel-top_wrapper').slick({
+    centerMode: true,
+    slidesToShow: 1,
+    infinite: true,
+    centerPadding: 0,
+    variableWidth: true,
+    focusOnSelect: true,
+    initialSlide: 1,
+    prevArrow: '.services-carousel-left-arrow_link',
+    nextArrow: '.services-carousel-right-arrow_link',
+    asNavFor: '.services-carousel-content_wrapper',
+  });
+
+  $('.services-carousel-content_wrapper').slick({
+    asNavFor: '.services-carousel-top_wrapper',
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    fade: true,
+    arrows: false,
+  });
 });
