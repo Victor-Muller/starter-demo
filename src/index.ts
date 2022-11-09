@@ -13,7 +13,7 @@ window.Webflow.push(() => {
     let tlHero = gsap.timeline();
 
     tlHero
-      .to(card, { flexGrow: 3, ease: 'sine.out', duration: 0.5 }, 0)
+      .to(card, { flexGrow: 3, ease: 'sine.out', duration: 0.5 }, 1)
       .to(bigTitle, { scale: 1.4, ease: 'power4.out', duration: 0.5 }, 0)
       .from(detailsTitle, { opacity: 0, duration: 0.5 }, 0)
       .from(detailsDivider, { width: 0, duration: 0.5 }, 0)
