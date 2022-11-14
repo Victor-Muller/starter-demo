@@ -1,4 +1,7 @@
 import { gsap } from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
+
+gsap.registerPlugin(CustomEase);
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
@@ -9,16 +12,32 @@ window.Webflow.push(() => {
     let detailsDivider = $(this).find('.hero-details_divider');
     let detailsText = $(this).find('.hero-details_text');
     let button = $(this).find('.button');
+    let overlay = $(this).find('.hero-item_overlay');
     let card = $(this);
     let tlHero = gsap.timeline();
 
     tlHero
-      .to(card, { flexGrow: 3, ease: 'sine.out', duration: 0.5 }, 0)
-      .to(bigTitle, { scale: 1.4, ease: 'power4.out', duration: 0.5 }, 0)
-      .from(detailsTitle, { opacity: 0, duration: 0.5 }, 0)
-      .from(detailsDivider, { width: 0, duration: 0.5 }, 0)
-      .from(detailsText, { opacity: 0, y: 20, duration: 0.5 }, 0)
-      .from(button, { opacity: 0, y: 20, duration: 0.5 }, 0)
+      .to(
+        card,
+        {
+          flexBasis: 'auto',
+          flexGrow: 4,
+          flexShrink: 1,
+          ease: CustomEase.create('custom', 'M0,0,C0.8,0,0.2,1,1,1'),
+          duration: 1,
+        },
+        0
+      )
+      .to(
+        bigTitle,
+        { scale: 1.4, ease: CustomEase.create('custom', 'M0,0,C0.8,0,0.2,1,1,1'), duration: 1 },
+        0
+      )
+      .from(detailsTitle, { opacity: 0, duration: 0.5 }, 1)
+      .from(detailsDivider, { width: 0, duration: 0.5 }, '<0')
+      .to(overlay, { opacity: 0.6, ease: 'none', duration: 0.3 }, '<0')
+      .from(detailsText, { opacity: 0, y: 20, duration: 0.5 }, '<0.3')
+      .from(button, { opacity: 0, y: 20, duration: 0.5 }, '<0')
       .reversed(true);
     this.animation = tlHero;
   });
