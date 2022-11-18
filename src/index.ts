@@ -69,6 +69,8 @@ window.Webflow.push(() => {
   });
 
   // FEATURES CAROUSEL ANIMATION
+
+  // Fade up title
   $('.services-carousel-content_wrapper').on(
     'afterChange',
     function (event, slick, currentSlide, nextSlide) {
