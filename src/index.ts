@@ -1,10 +1,78 @@
 import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(CustomEase);
+gsap.registerPlugin(ScrollTrigger);
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  // FADE IN ANIMATIONS
+
+  // Hero
+
+  let heroCards = $('.hero-list_item');
+  let heroInfo = $('[hero-info]');
+  let logo = $('.hero-logo_image');
+  let arc = $('.hero-arc_component');
+  let arrow = $('.hero-arrow_link');
+  let heroIntro = gsap.timeline();
+
+  heroIntro
+    .from(logo, { opacity: 0, duration: 1 }, 0.3)
+
+    .from(
+      heroCards,
+      {
+        y: 100,
+        opacity: 0,
+        scale: 0.95,
+        stagger: 0.1,
+        ease: 'power2.out',
+        duration: 1,
+      },
+      '<0.2'
+    )
+
+    .from(
+      heroInfo,
+      {
+        y: 20,
+        opacity: 0,
+        scale: 0.95,
+        stagger: 0.1,
+        ease: 'power2.out',
+        duration: 1,
+      },
+      '<0.1'
+    )
+    .from(
+      arc,
+      {
+        y: 20,
+        opacity: 0,
+        scale: 0.95,
+        stagger: 0.1,
+        ease: 'power2.out',
+        duration: 1,
+      },
+      '<0.1'
+    )
+    .from(
+      arrow,
+      {
+        y: 20,
+        opacity: 0,
+        scale: 0.95,
+        stagger: 0.1,
+        ease: 'power2.out',
+        duration: 1,
+      },
+      '<0.1'
+    );
+
+  // HERO CARDS ANIMATION
+
   $('.hero-list_item').each(function () {
     let card = $(this);
     let bigTitle = $(this).find('.hero_h1');
@@ -27,10 +95,10 @@ window.Webflow.push(() => {
     animContent
       .to(bigTitle, { letterSpacing: 15, autoRound: false, duration: 1 }, 0)
       .to(overlay, { opacity: 0.6, duration: 0.3 }, 0)
-      .to(detailsTitle, { opacity: 1 }, 0.5)
+      .fromTo(detailsTitle, { opacity: 0 }, { opacity: 1 }, 0.5)
       .to(detailsDivider, { width: '100%' }, '<0')
-      .to(detailsText, { opacity: 1, y: 0 }, '<0')
-      .to(button, { opacity: 1, y: 0 }, '<0.3')
+      .fromTo(detailsText, { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, '<0')
+      .fromTo(button, { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, '<0.3')
       .reversed(true);
 
     card.on('mouseover', function () {
@@ -41,6 +109,21 @@ window.Webflow.push(() => {
     card.on('mouseout', function () {
       animContent.timeScale(2).reverse();
       animCard.reverse();
+    });
+  });
+
+  // General fade up
+  $('[fade-up]').each(function () {
+    let fadeUp = $(this);
+
+    gsap.from(fadeUp, {
+      opacity: 0,
+      y: 100,
+      scale: 0.95,
+      duration: 1,
+      scrollTrigger: this,
+      ease: 'power2.out',
+      delay: 0.2,
     });
   });
 
