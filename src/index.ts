@@ -149,6 +149,7 @@ window.Webflow.push(() => {
     arrows: false,
     speed: 0,
     initialSlide: 1,
+    touchMove: false,
   });
 
   // FEATURES CAROUSEL ANIMATION
