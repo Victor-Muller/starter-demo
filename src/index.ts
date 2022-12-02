@@ -25,7 +25,7 @@ window.Webflow.push(() => {
       heroCards,
       {
         opacity: 0,
-        stagger: 0.2,
+        stagger: 0.1,
         ease: 'power2.out',
         duration: 1,
       },
@@ -70,7 +70,7 @@ window.Webflow.push(() => {
     );
 
   // HERO CARDS ANIMATION
-  var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+  let viewportWidth = window.innerWidth || document.documentElement.clientWidth;
   if (viewportWidth > 992) {
     $('.hero-list_item').each(function () {
       let card = $(this);
@@ -110,6 +110,7 @@ window.Webflow.push(() => {
         animCard.reverse();
       });
     });
+  } else {
   }
   // General fade up
   $('[fade-up]').each(function () {
@@ -138,6 +139,17 @@ window.Webflow.push(() => {
     prevArrow: '.services-carousel-left-arrow_link',
     nextArrow: '.services-carousel-right-arrow_link',
     asNavFor: '.services-carousel-content_wrapper',
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          centerMode: true,
+          slidesToShow: 2,
+          infinite: false,
+          initialSlide: 0,
+        },
+      },
+    ],
   });
 
   $('.services-carousel-content_wrapper').slick({
@@ -149,6 +161,14 @@ window.Webflow.push(() => {
     speed: 0,
     initialSlide: 1,
     draggable: false,
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          initialSlide: 0,
+        },
+      },
+    ],
   });
 
   // FEATURES CAROUSEL ANIMATION
