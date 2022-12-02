@@ -143,9 +143,8 @@ window.Webflow.push(() => {
       {
         breakpoint: 767,
         settings: {
-          centerMode: true,
-          slidesToShow: 2,
-          infinite: false,
+          centerMode: false,
+          slidesToShow: 1.5,
           initialSlide: 0,
         },
       },
