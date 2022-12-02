@@ -118,7 +118,7 @@ window.Webflow.push(() => {
 
     gsap.from(fadeUp, {
       opacity: 0,
-      y: 100,
+      y: 80,
       scale: 0.95,
       duration: 1,
       scrollTrigger: this,
@@ -146,6 +146,15 @@ window.Webflow.push(() => {
           centerMode: false,
           slidesToShow: 1.5,
           initialSlide: 0,
+          variableWidth: false,
+          infinite: false,
+          centerPadding: 0,
+        },
+      },
+      {
+        breakpoint: 479,
+        settings: {
+          slidesToShow: 1.3,
         },
       },
     ],
@@ -165,6 +174,8 @@ window.Webflow.push(() => {
         breakpoint: 767,
         settings: {
           initialSlide: 0,
+          speed: 300,
+          infinite: false,
         },
       },
     ],
@@ -173,15 +184,18 @@ window.Webflow.push(() => {
   // FEATURES CAROUSEL ANIMATION
 
   // Fade up title
+
   $('.services-carousel-content_wrapper').on(
     'afterChange',
     function (event, slick, currentSlide, nextSlide) {
-      gsap.from('.services-carousel-item_content', {
-        opacity: 0,
-        y: 50,
-        ease: 'power4.out',
-        duration: 1,
-      });
+      if (viewportWidth > 767) {
+        gsap.from('.services-carousel-item_content', {
+          opacity: 0,
+          y: 50,
+          ease: 'power4.out',
+          duration: 1,
+        });
+      }
     }
   );
 });
