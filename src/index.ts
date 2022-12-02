@@ -166,6 +166,7 @@ window.Webflow.push(() => {
         breakpoint: 767,
         settings: {
           initialSlide: 0,
+          draggable: false,
         },
       },
     ],
